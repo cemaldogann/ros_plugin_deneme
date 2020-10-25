@@ -1,5 +1,6 @@
 <?xml version='1.0'?>
 <sdf version='1.7'>
+
   <model name='Duvar'>
     <pose>4.69304 -1.21545 0 0 -0 0</pose>
     <link name='Wall_22'>

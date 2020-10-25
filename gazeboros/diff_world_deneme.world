@@ -11,12 +11,23 @@
       <uri>model://sun</uri>
     </include>
     
+    <include> 
+     	<uri>model://Ray_Model</uri>
+     <pose>0.74 0.01 0.809 0 0 0</pose>
+    </include>
+    
+    <joint name ="ray_sensor" type= "fixed">
+      <parent>chassis</parent>
+      <child>ray_link::link</child>
+    </joint>
+    
 <!--  <include>
      <uri>model://Duvar</uri>
      <pose>4.69304 -1.21545 0 0 -0 0</pose>
     </include> 
 -->    
-    
+
+<!--
     <include>
        <uri>model://hokuyo</uri>
        <pose>0.17 0 0.6 0 0 0</pose>
@@ -27,7 +38,7 @@
       <parent>chassis</parent>
       <child>hokuyo::link</child>
     </joint>
-
+-->
    
     <model name='vehicle'>
       <pose>0 0 0.325 0 -0 0</pose>
@@ -217,8 +228,50 @@
         <parent>chassis</parent>
         <child>caster</child>
       </joint>
+      
+      
+      
+      
+      
+      
+      
+      
+ 
+          <plugin name="pc2" filename="libgazebo_ros_ray_sensor.so">
+            <ros>
+              <namespace>/ray</namespace>
+              <remapping>~/out:=pointcloud2</remapping>
+            </ros>
+            <output_type>sensor_msgs/PointCloud2</output_type>
+          </plugin>
+          <plugin name="pc" filename="libgazebo_ros_ray_sensor.so">
+            <ros>
+              <namespace>/ray</namespace>
+              <remapping>~/out:=pointcloud</remapping>
+            </ros>
+            <output_type>sensor_msgs/PointCloud</output_type>
+          </plugin>
+          <plugin name="ls" filename="libgazebo_ros_ray_sensor.so">
+            <ros>
+              <namespace>/ray</namespace>
+              <remapping>~/out:=laserscan</remapping>
+            </ros>
+            <output_type>sensor_msgs/LaserScan</output_type>
+          </plugin>
+          <plugin name="range" filename="libgazebo_ros_ray_sensor.so">
+            <ros>
+              <namespace>/ray</namespace>
+              <remapping>~/out:=range</remapping>
+            </ros>
+            <output_type>sensor_msgs/Range</output_type>
+          </plugin>
+      
+      
+      
+      
       <plugin name='diff_drive' filename='libgazebo_ros_diff_drive.so'>
 
+<!-- isimleri degistirme, kodu yzarken buradan yapiyorduk -->
         <ros>
           <namespace>/demo</namespace>
           <remapping>cmd_vel:=cmd_demo</remapping>
@@ -245,14 +298,11 @@
         <odometry_frame>odom_demo</odometry_frame>
         <robot_base_frame>chassis</robot_base_frame>
 
-      </plugin>
-      
-      
-      
-      
- 
-   
+ </plugin>
+
+     
       </model>
-      </world>
-    </sdf>
+      
+   </world>
+ </sdf>
 

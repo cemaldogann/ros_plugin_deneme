@@ -20,6 +20,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(gazebo REQUIRED)
+find_package(sensor_msgs REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
@@ -37,7 +38,7 @@ target_include_directories(node PUBLIC
 #add_library(demo src/gazebo_ros_diff_drive.cpp)
 #target_link_libraries(demo ${GAZEBO_LIBRARIES})
 
-ament_target_dependencies(publishh rclcpp geometry_msgs gazebo)
+ament_target_dependencies(publishh rclcpp geometry_msgs gazebo sensor_msgs)
  
  
   
